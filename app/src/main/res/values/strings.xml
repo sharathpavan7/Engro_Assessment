@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">Engro Assessment</string>
+    <string name="upload">Upload</string>
+    <string name="select_image">Select Image</string>
+    <string name="storage_permission_rationale">Needs storage permission to access the gallery. Please enable Storage permission from application settings.</string>
+</resources>
