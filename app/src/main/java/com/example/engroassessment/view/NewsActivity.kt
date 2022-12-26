@@ -23,6 +23,11 @@ import kotlinx.android.synthetic.main.activity_news.*
 
 class NewsActivity : AppCompatActivity() {
 
+    companion object {
+        val PERMISSION_REQUEST_CODE_STORAGE = 2000
+        val REQUEST_IMAGE_GALLERY = 1000
+    }
+
     val mArrayUri = ArrayList<Uri>()
     lateinit var newsViewModel: NewsFeedViewModel
 
@@ -47,7 +52,7 @@ class NewsActivity : AppCompatActivity() {
                 if (handlePermission(
                         Manifest.permission.READ_EXTERNAL_STORAGE,
                         getString(R.string.storage_permission_rationale),
-                        MainActivity.PERMISSION_REQUEST_CODE_STORAGE
+                        PERMISSION_REQUEST_CODE_STORAGE
                     )
                 ) {
                     launchGallery()
@@ -60,7 +65,7 @@ class NewsActivity : AppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         when (requestCode) {
-            MainActivity.REQUEST_IMAGE_GALLERY -> {
+            REQUEST_IMAGE_GALLERY -> {
                 mArrayUri.clear()
                 val imagesEncodedList = ArrayList<String>()
                 if (data?.data != null) {
@@ -103,7 +108,7 @@ class NewsActivity : AppCompatActivity() {
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         when (requestCode) {
-            MainActivity.PERMISSION_REQUEST_CODE_STORAGE -> {
+            PERMISSION_REQUEST_CODE_STORAGE -> {
                 launchGallery()
             }
         }
@@ -134,7 +139,7 @@ class NewsActivity : AppCompatActivity() {
         i.action = Intent.ACTION_GET_CONTENT
         startActivityForResult(
             Intent.createChooser(i, getString(R.string.select_image)),
-            MainActivity.REQUEST_IMAGE_GALLERY
+            REQUEST_IMAGE_GALLERY
         )
     }
 
